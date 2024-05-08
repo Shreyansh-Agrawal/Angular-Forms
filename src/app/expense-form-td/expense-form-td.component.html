@@ -1,0 +1,22 @@
+<h3>Using TD form</h3>
+<form (ngSubmit)="submitForm()" #form="ngForm">
+    Emp ID: <input type="text" name="empId" #empId="ngModel" [(ngModel)]="employeeData.empId">
+    <br>
+    Emp Name: <input type="text" name="empName" #empName="ngModel" [(ngModel)]="employeeData.empName">
+    <br>
+    <button type="button" (click)="addExpense()">Add</button>
+    <br>
+    <div *ngFor="let exp of employeeData.expenses; let i = index">
+        Description: <input type="text" name="description" [(ngModel)]="exp.description">
+        Amount: <input type="number" name="amount" [(ngModel)]="exp.amount">
+        <button *ngIf="employeeData.expenses.length>1" type="button" (click)="deleteExpense(i)">Delete</button>
+    </div>
+    <!-- <div ngModelGroup="expenseData">
+        <div *ngFor="let item of expenseData.items; let i=index">
+            Description: <input type="text" name="description" [(ngModel)]="item.description">
+            Amount: <input type="number" name="amount" [(ngModel)]="item.amount">
+            <button type="button" (click)="deleteExpense(i)">Delete</button>
+        </div>
+    </div> -->
+    <button>Submit</button>
+</form>

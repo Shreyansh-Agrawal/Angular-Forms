@@ -1,0 +1,18 @@
+<h3>Using Reactive form</h3>
+<form (ngSubmit)="submitForm()" [formGroup]="reactiveForm">
+    Emp ID: <input type="text" formControlName="empId">
+    <br>
+    Emp Name: <input type="text" formControlName="empName">
+    <br>
+    <button type="button" (click)="addExpense()">Add</button>
+    <br>
+    <div formArrayName="expenses">
+        <div *ngFor="let control of reactiveForm.get('expenses')['controls']; let i=index" [formGroupName]="i">
+            Description: <input type="text" formControlName="description">
+            Amount: <input type="number" formControlName="amount">
+            <button type="button" (click)="deleteExpense(i)">Delete</button>
+        </div>
+    </div>
+    <br>
+    <button>Submit</button>
+</form>
